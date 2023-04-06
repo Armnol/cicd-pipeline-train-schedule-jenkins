@@ -13,7 +13,7 @@ node {
 task build
 
 
-tasks.register('packageDistribution', Zip) {
+tasks.zip('packageDistribution', Zip) {
 
 from ('.') {
 		include "*"
@@ -24,10 +24,8 @@ from ('.') {
 		include "routes/**"
 		include "views/**"
 	}
-    archiveFileName = "trainSchedule.zip"
+    archiveFileName = "trainSchedule"
     destinationDirectory = layout.buildDirectory.dir('dist')
-
-    from layout.buildDirectory.dir("toArchive")
 }
 
 //declare a task to create a zip of the app
