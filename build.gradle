@@ -10,9 +10,9 @@ node {
 }
 
 //declare a build task
+task build
 
-
-
+task zip {
 tasks.register('packageDistribution', Zip){
 
 from ('.') {
@@ -27,11 +27,8 @@ from ('.') {
     archiveFileName = "trainSchedule"
     destinationDirectory = layout.buildDirectory.dir('dist')
     
-    doLast{
-    task build
-    }
 }
-
+}
 //declare a task to create a zip of the app
 //task zip(type: Zip) {
 //	from ('.') {
@@ -48,8 +45,8 @@ from ('.') {
 //}
 
 //declare task dependencies
-//build.dependsOn zip
-//zip.dependsOn npm_build
+build.dependsOn zip
+zip.dependsOn npm_build
 npm_build.dependsOn npm_test
 npm_test.dependsOn npmInstall
 npm_build.dependsOn npmInstall
