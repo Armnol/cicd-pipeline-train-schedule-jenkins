@@ -13,7 +13,7 @@ node {
 task build
 
 
-tasks zip(type: Zip) {
+tasks.register('packageDistribution', Zip){
 
 from ('.') {
 		include "*"
